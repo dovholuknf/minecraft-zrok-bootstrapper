@@ -1,6 +1,4 @@
 $PATH_TO_ZROK="C:\path\to\zrok\zrok.exe"
-$SERVER_HOME = "C:\path\to\minecraft\server"
-$SERVER_JAR = "minecraft_server.1.20.4.jar"
 $INITIAL_MEMORY_MB = 1024
 $MAX_MEMORY_MB = 1024
 $MINECRAFT_SERVER_IP = "127.0.0.1"
@@ -16,35 +14,6 @@ do {
         $PATH_TO_ZROK = Read-Host "Enter the correct path"
     }
 } while ($true)
-
-do {
-    if (Test-Path $SERVER_HOME -PathType Container) {
-        break
-    } else {
-        Write-Host -ForegroundColor Red "==== SERVER_HOME incorrect! ===="
-        Write-Host -ForegroundColor Red "(update SERVER_HOME in this script to avoid seeing this message)"
-        
-        $SERVER_HOME = Read-Host "Enter the correct path to your server's home"
-    }
-} while ($true)
-
-
-$eulaOK = Select-String -Path "$SERVER_HOME\eula.txt" -Pattern "eula=true"
-if ($eulaOK -ne $null)
-{
-    echo Contains String
-}
-else
-{
-    Write-Host "=============================================="
-    Write-Host "== eula file contents =="
-    Write-Host "=============================================="
-    Get-Content -Path "$SERVER_HOME\eula.txt" -Raw
-    Write-Host "=============================================="
-    Write-Host ""
-    Write-Host -ForegroundColor Red "Error: You haven't accepted the Minecraft server eula.txt!"
-    return
-}
 
 if (Test-Path "$env:USERPROFILE\.zrok\environment.json" -PathType Leaf) {
 } else {
@@ -96,7 +65,6 @@ Start-Process -FilePath "$PATH_TO_ZROK" `
 
 Write-Host ""
 Write-Host ""
-Write-Host "Minecraft server is now running. zrok share reserved is running..."
-Write-Host "To stop, click in each window. Press 'ctrl-c' and wait for the window to disappear"
+Write-Host "To stop, click in the zrok window, press 'ctrl-c', and wait for the window to disappear"
 Write-Host ""
 Write-Host ""
