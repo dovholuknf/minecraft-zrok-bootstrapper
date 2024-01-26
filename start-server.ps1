@@ -7,6 +7,63 @@ $MAX_MEMORY_MB = 1024
 $MINECRAFT_SERVER_IP = "127.0.0.1"
 $MINECRAFT_SERVER_PORT = "25565"
 
+do {
+    if (Test-Path $PATH_TO_ZROK -PathType Leaf) {
+        break
+    } else {
+        Write-Host -ForegroundColor Red "==== PATH_TO_ZROK incorrect! ===="
+        Write-Host -ForegroundColor Red "(update PATH_TO_ZROK in this script to avoid seeing this message)"
+        
+        $PATH_TO_ZROK = Read-Host "Enter the correct path"
+    }
+} while ($true)
+
+do {
+    if (Test-Path $PATH_TO_JAVA -PathType Leaf) {
+        break
+    } else {
+        Write-Host -ForegroundColor Red "==== PATH_TO_JAVA incorrect! ===="
+        Write-Host -ForegroundColor Red "(update PATH_TO_JAVA in this script to avoid seeing this message)"
+        
+        $PATH_TO_JAVA = Read-Host "Enter the correct path"
+    }
+} while ($true)
+
+do {
+    if (Test-Path $SERVER_HOME -PathType Container) {
+        break
+    } else {
+        Write-Host -ForegroundColor Red "==== SERVER_HOME incorrect! ===="
+        Write-Host -ForegroundColor Red "(update SERVER_HOME in this script to avoid seeing this message)"
+        
+        $SERVER_HOME = Read-Host "Enter the correct path to your server's home"
+    }
+} while ($true)
+
+
+$eulaOK = Select-String -Path "$SERVER_HOME\eula.txt" -Pattern "eula=true"
+if ($eulaOK -ne $null)
+{
+    echo Contains String
+}
+else
+{
+    Write-Host "=============================================="
+    Write-Host "== eula file contents =="
+    Write-Host "=============================================="
+    Get-Content -Path "$SERVER_HOME\eula.txt" -Raw
+    Write-Host "=============================================="
+    Write-Host ""
+    Write-Host -ForegroundColor Red "Error: You haven't accepted the Minecraft server eula.txt!"
+    return
+}
+
+if (Test-Path "$env:USERPROFILE\.zrok\environment.json" -PathType Leaf) {
+} else {
+    Write-Host -ForegroundColor Red "zrok not enabled! enable zrok before continuing!"
+    return
+}
+
 # Convert JSON content to a PowerShell object
 $jsonObject = Get-Content -Path "$env:USERPROFILE\.zrok\environment.json" -Raw | ConvertFrom-Json
 
