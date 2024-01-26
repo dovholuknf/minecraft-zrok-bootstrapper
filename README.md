@@ -1,16 +1,23 @@
-### Download stuff:
+### Prerequisites
+* download/install/start Minecraft server (accept the eula etc)
 
-On the server and clients:
+### On the Minecraft server:
 * download [the latest zrok for windows](https://github.com/openziti/zrok/releases/latest) (currently zrok_0.4.23_windows_amd64.tar.gz)
-
-On the server:
+* use windows explorer (win11+) or 7zip or something to ungzip and untar the download
+* put the zrok.exe somewhere you can find, for example `c:\minecraft\zrok.exe`
 * download: [the start-server script](https://raw.githubusercontent.com/dovholuknf/minecraft-zrok-bootstrapper/main/start-server.ps1)
-* make sure you have java somewhere
-* make sure you start the server one time and make sure it works (usually just means updating the eula.txt)
-* edit the 
-* Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+* edit the script and update the PATH_TO_ZROK with the location of your zrok.exe
+* run the script (the script is not signed, research this if you don't understand it):
 
-On the clients:
+      powershell.exe -ExecutionPolicy Bypass -File start-server.ps1
+
+### On the Minecraft clients:
+* download [the latest zrok for windows](https://github.com/openziti/zrok/releases/latest) (currently zrok_0.4.23_windows_amd64.tar.gz)
+* use windows explorer (win11+) or 7zip or something to ungzip and untar the download
+* put the zrok.exe somewhere you can find, for example `c:\minecraft\zrok.exe`
 * download [the start-client script](https://raw.githubusercontent.com/dovholuknf/minecraft-zrok-bootstrapper/main/start-client.ps1)
+* update the start-client sciprt with the path to zrok
+* run `start-client.ps1`:
 
-On the server
+	  powershell.exe -ExecutionPolicy Bypass -File start-client.ps1
+	  
