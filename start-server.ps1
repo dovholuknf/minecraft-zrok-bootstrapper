@@ -101,10 +101,13 @@ $minecraftProcess = Start-Process -FilePath "$PATH_TO_JAVA" `
     -WorkingDirectory $SERVER_HOME `
     -PassThru
 
+$OriginalProgressPreference = $Global:ProgressPreference
+$Global:ProgressPreference = 'SilentlyContinue'
 while (-not (Test-NetConnection -ComputerName $MINECRAFT_SERVER_IP -Port $MINECRAFT_SERVER_PORT -InformationLevel Quiet)) {
     Write-Host "Waiting for port $MINECRAFT_SERVER_PORT to respond..."
     Start-Sleep -Seconds 5
 }
+$Global:ProgressPreference = $OriginalProgressPreference
 
 Write-Host "Port $MINECRAFT_SERVER_PORT is now open. Starting zrok share"
 
