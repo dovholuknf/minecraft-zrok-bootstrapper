@@ -1,5 +1,4 @@
 $PATH_TO_ZROK="C:\path\to\zrok\zrok.exe"
-$PATH_TO_JAVA="C:\path\to\java\java.exe"
 $SERVER_HOME = "C:\path\to\minecraft\server"
 $SERVER_JAR = "minecraft_server.1.20.4.jar"
 $INITIAL_MEMORY_MB = 1024
@@ -15,17 +14,6 @@ do {
         Write-Host -ForegroundColor Red "(update PATH_TO_ZROK in this script to avoid seeing this message)"
         
         $PATH_TO_ZROK = Read-Host "Enter the correct path"
-    }
-} while ($true)
-
-do {
-    if (Test-Path $PATH_TO_JAVA -PathType Leaf) {
-        break
-    } else {
-        Write-Host -ForegroundColor Red "==== PATH_TO_JAVA incorrect! ===="
-        Write-Host -ForegroundColor Red "(update PATH_TO_JAVA in this script to avoid seeing this message)"
-        
-        $PATH_TO_JAVA = Read-Host "Enter the correct path"
     }
 } while ($true)
 
@@ -91,15 +79,6 @@ if ($targetEnvironment) {
 	Write-Host "UNEXPECTED. Trying to reserve share: $RESERVED_SHARE"
   Invoke-Expression "$PATH_TO_ZROK reserve private ${MINECRAFT_SERVER_IP}:${MINECRAFT_SERVER_PORT} --backend-mode tcpTunnel --unique-name $RESERVED_SHARE"
 }
-
-$minecraftProcess = Start-Process -FilePath "$PATH_TO_JAVA" `
-    -ArgumentList "-Xmx${MAX_MEMORY_MB}M", `
-                  "-Xms${INITIAL_MEMORY_MB}M", `
-                  "-jar", `
-                  "$SERVER_HOME\$SERVER_JAR", `
-                  "nogui" `
-    -WorkingDirectory $SERVER_HOME `
-    -PassThru
 
 $OriginalProgressPreference = $Global:ProgressPreference
 $Global:ProgressPreference = 'SilentlyContinue'
