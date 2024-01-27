@@ -5,7 +5,7 @@ This repository is meant to help people use `zrok` to run Minecraft.
 * download [the latest zrok for windows](https://github.com/openziti/zrok/releases/latest) (currently zrok_0.4.23_windows_amd64.tar.gz)
 * use windows explorer (win11+) or 7zip or something to ungzip and untar the download
 * put the zrok.exe somewhere you can find, for example `c:\minecraft\zrok.exe`
-* invite yourself to zrok using: `zrok invite`
+* invite yourself to zrok using: `zrok invite`. see https://docs.zrok.io/docs/getting-started/#generating-an-invitation
 
 ### On the Minecraft server:
 * download: [the start-server script](https://raw.githubusercontent.com/dovholuknf/minecraft-zrok-bootstrapper/main/start-server.ps1)
