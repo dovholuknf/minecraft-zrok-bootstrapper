@@ -21,3 +21,5 @@ This repository is meant to help people use `zrok` to run Minecraft.
 
 	  powershell.exe -ExecutionPolicy Bypass -File start-client.ps1
 	  
+### YouTube Video Overview:
+[<img src="https://img.youtube.com/vi/Sq43hp6n9rE/hqdefault.jpg">](https://youtu.be/Sq43hp6n9rE)
