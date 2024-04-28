@@ -26,7 +26,7 @@ $jsonObject = Get-Content -Path "$env:USERPROFILE\.zrok\environment.json" -Raw |
 $zid = $jsonObject.ziti_identity
 
 # Strip anything not alphanumeric
-$RESERVED_SHARE = (($zid -replace '[^a-zA-Z0-9]', '') + "minecraft").ToLower()
+$RESERVED_SHARE = (($zid -replace '[^a-zA-Z0-9]', '') + "minecraftbedrock").ToLower()
 
 # Convert JSON to PowerShell object
 $jsonObject = Invoke-Expression "$PATH_TO_ZROK overview" | ConvertFrom-Json
