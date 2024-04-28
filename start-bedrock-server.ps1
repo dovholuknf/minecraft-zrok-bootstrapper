@@ -47,15 +47,7 @@ if ($targetEnvironment) {
   Invoke-Expression "$PATH_TO_ZROK reserve private ${MINECRAFT_SERVER_IP}:${MINECRAFT_SERVER_PORT} --backend-mode udpTunnel --unique-name $RESERVED_SHARE"
 }
 
-$OriginalProgressPreference = $Global:ProgressPreference
-$Global:ProgressPreference = 'SilentlyContinue'
-while (-not (Test-NetConnection -ComputerName $MINECRAFT_SERVER_IP -Port $MINECRAFT_SERVER_PORT -InformationLevel Quiet)) {
-    Write-Host "Waiting for port $MINECRAFT_SERVER_PORT to respond..."
-    Start-Sleep -Seconds 5
-}
-$Global:ProgressPreference = $OriginalProgressPreference
-
-Write-Host "Port $MINECRAFT_SERVER_PORT is now open. Starting zrok share"
+Write-Host "Starting zrok share. Make sure the Minecraft server is running!"
 
 Start-Process -FilePath "$PATH_TO_ZROK" `
     -ArgumentList "share reserved $RESERVED_SHARE" `
