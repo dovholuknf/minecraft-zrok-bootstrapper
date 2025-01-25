@@ -46,5 +46,4 @@ echo "Port $MINECRAFT_SERVER_PORT is now open. Starting zrok share"
 
 echo ""
 echo "To stop, click in the zrok window, press 'ctrl-c', and wait for the window to disappear"
-echo "follow @ybpethan on instagram"
 echo ""
