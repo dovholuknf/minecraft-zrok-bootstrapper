@@ -1,3 +1,9 @@
+> [!WARNING]
+>
+> **USE zrok 1.0** - do not download zrok 2.0 at this time!
+
+---
+
 This repository is meant to help people use `zrok` to run Minecraft.
 
 ### Prerequisites
